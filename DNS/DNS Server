@@ -1,0 +1,20 @@
+Technically, there is nothing such as a DNS server. It is an umbrella term for different types of servers in the DNS system. Here's a breakdown:
+
+1. Root DNS Servers: These are the starting point of the DNS hierarchy. They store information about the authoritative DNS servers for top-level domains (TLDs) like .com, .org, .net, etc.
+
+2. Top-Level Domain (TLD) DNS Servers: These servers hold information about the authoritative DNS servers for each TLD.
+
+3. Authoritative DNS Servers:These servers store the actual DNS records (such as A, AAAA, CNAME, MX, etc.) for specific domain names.
+
+4. Recursive DNS Servers: Also known as DNS resolvers, these servers handle requests from clients (like your computer or smartphone) by recursively querying other DNS servers until they find the IP address associated with a domain name.
+
+5. Caching DNS Servers: These servers temporarily store DNS records to speed up subsequent requests and reduce the load on authoritative DNS servers.
+
+As for which servers ISPs and domain registrars typically have:
+
+- ISPs: They typically provide recursive DNS servers for their customers to resolve domain names. These servers might also cache DNS records to improve performance.
+
+- Domain Registrars (like GoDaddy and Namecheap): They often offer authoritative DNS hosting services, allowing customers to manage DNS records for their domain names. Additionally, they might provide recursive DNS services as well.
+
+So, while ISPs mainly offer recursive DNS services, domain registrars primarily provide authoritative DNS services, although some, like Google DNS or Cloudflare DNS, offer both.
+
