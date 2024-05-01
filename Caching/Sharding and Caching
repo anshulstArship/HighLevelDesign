@@ -5,9 +5,12 @@
 
 🔗 Consistent Hashing:
 * Consistent hashing is a technique used to distribute data across multiple servers.
-* It uses two hash functions: one to hash the data and one to hash the servers. The server hash function maps each server to a point on a circle. The data hash function maps each piece of data to a point on the same circle.
-* The data is stored on the server that is closest to it on the circle. When you add or remove a server, only the data that is closest to the new server needs to be moved.
-* Cascading failures can occur when a server goes down and the data on that server needs to be moved to another server. Consistent hashing helps to minimize the amount of data that needs to be moved by using multiple hash functions for the machines.
+* It uses two hash functions: one to hash the data and one to hash the servers. The server hash function maps each server to a point on a circle. 
+    The data hash function maps each piece of data to a point on the same circle.
+* The data is stored on the server that is closest to it on the circle. When you add or remove a server, only the data that is closest to the new 
+    server needs to be moved.
+* Cascading failures can occur when a server goes down and the data on that server needs to be moved to another server. 
+    Consistent hashing helps to minimize the amount of data that needs to be moved by using multiple hash functions for the machines.
 
 🧠 Decoupling Code and Storage:
 - Storing data on the same server as the application code makes the system tightly coupled, leading to performance bottlenecks and scalability issues.
@@ -20,19 +23,23 @@
 
 ⿡ In-Browser Caching:
 - Browsers cache DNS information and static content like images, videos, and JavaScript files, enhancing subsequent page loads.
+
 ⿢ Local Caching:
 - Caching data on application servers reduces the need for frequent database queries, thereby enhancing system performance.
-- A local cache can be implemented by literally storing data in memory on the application server in the form of key-value pairs such as hash maps or using in-memory databases like Redis or Memcached.
+- A local cache can be implemented by literally storing data in memory on the application server in the form of key-value pairs such as hash maps or 
+   using in-memory databases like Redis or Memcached.
 - Local caches are used for storing data that would not be useful to other application servers, such as user sessions or intermediate results of calculations.
 - Remember a local cache is not shared between different application servers.
 
 ⿣ Global Caching
-- Systems like Redis and Memcached facilitate quick access to actual or derived data, improving response times and user experience by storing the data in a separate in-memory storage layer.
+- Systems like Redis and Memcached facilitate quick access to actual or derived data, improving response times and user experience by storing the data 
+   in a separate in-memory storage layer.
 
 🛠 Inconsistent or stale data
 - Since the cached data is a copy of the original data, it can become inconsistent or stale if the original data is updated.
 - Techniques like time-to-live (TTL) and cache invalidation are used to manage stale data and ensure that the cached data is up-to-date.
-- In TTL, the cache entry is only valid for the duration of the TTL. If the current time is greater that the insert time + TTL, the entry is considered to be expired or invalid.
+- In TTL, the cache entry is only valid for the duration of the TTL. If the current time is greater that the insert time + TTL, the entry is considered to be 
+   expired or invalid.
 - TTL is a passive approach and can still lead to stale data being served.
 
 🚨Reading assignment
