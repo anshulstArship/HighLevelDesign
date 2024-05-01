@@ -1,16 +1,20 @@
  Domain names and IP addresses:
 * A machine is identified by an IP address, but it's easier to remember a domain name. You can think of a domain name as a nickname for an IP address
 * ICAAN is the organization that manages domain names and IP addresses. You can buy a domain name from a domain registrar like GoDaddy or Namecheap.
-* DNS servers are responsible for mapping domain names to IP addresses. When you type a domain name into your browser, your computer asks a DNS server for the IP address of the domain name.
+* DNS servers are responsible for mapping domain names to IP addresses. When you type a domain name into your browser, your computer asks a DNS server 
+   for the IP address of the domain name.
 
 🌐 Scalability
 * As the number of users and data grows, the system should be able to handle the increased load. This is called scalability.
 * Vertical scaling is when you add more resources to a single machine, like adding more RAM or CPU. Horizontal scaling is when you add more machines to your system.
-* Vertical scaling has a limit, so most systems use horizontal scaling. Horizontal scaling distributes the load across multiple machines, which makes the system more capable of handling increased load.
+* Vertical scaling has a limit, so most systems use horizontal scaling. Horizontal scaling distributes the load across multiple machines, which makes the system
+   more capable of handling increased load.
 
 📡 Load Balancers:
-* Load balancers distribute incoming traffic across multiple servers. This helps to avoid overloading a single server. A load balancer can also detect when a server is down and stop sending traffic to it.
-* Load balancers reverse proxy the incoming requests to the servers. This means that the servers don't see the IP address of the client, they only see the IP address of the load balancer. They distribute the requests based on a load balancing algorithm like round-robin, least connections, or IP hash.
+* Load balancers distribute incoming traffic across multiple servers. This helps to avoid overloading a single server. A load balancer can also detect when a 
+   server is down and stop sending traffic to it.
+* Load balancers reverse proxy the incoming requests to the servers. This means that the servers don't see the IP address of the client, they only see the IP address
+   of the load balancer. They distribute the requests based on a load balancing algorithm like round-robin, least connections, or IP hash.
 * Load balancers use health checks or heartbeats to detect when a server is down. When a server is down, the load balancer stops sending traffic to it.
 
 💾 Sharding:
