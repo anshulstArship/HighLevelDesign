@@ -29,3 +29,7 @@
    the cache. When the TTL expires, the cache will delete the files.
 - A low TTL such as 30 seconds will increase the cache misses as the cache will be frequently evicted. A higher TTL such as 1 day will increase the cache hit 
     rate but will have stale data.
+
+🚨Reading 
+
+https://www.codesmith.io/blog/diagramming-system-design-s3-storage-system 
