@@ -1,0 +1,26 @@
+- Write-through -
+ Data is written to the cache and then to the database, ensuring that the cache is always up-to-date. This approach is slow but ensures data consistency.
+
+- Write-back -
+Data is written to the cache and then to the database asynchronously, ensuring that the cache is updated quickly. This approach is faster but can lead to data 
+  inconsistency.
+
+- Write-around -
+Data is written directly to the database and bypasses the cache. This approach is useful for write-heavy workloads, but it can lead to cache misses and stale data.
+
+
+📦 Global cache
+- You can add a global cache like Redis or Memcached to store the input and output files. When a user submits a code, the system can check the cache for the input file. If it's not there, it can read the input file from S3 and store it in the cache.
+- This reduces the latency, but the global cache has a limited memory, so the cache eviction rate will be high, and thus the cache hit rate will be low.
+
+🕐 TTL
+- The input and output files can be updated, so you need to manage stale data. You can use a time-to-live (TTL) to set an expiration time for the input and output files in the cache.
+   When the TTL expires, the cache will delete the files.
+- A low TTL such as 30 seconds will increase the cache misses as the cache will be frequently evicted. A higher TTL such as 1 day will increase the cache hit rate
+    but will have stale data.
+
+🛌 Lazy invalidation
+- Instead of invalidating the cache immediately when the input or output file is updated, you can use lazy invalidation to update the files in the cache when 
+   they are requested. When a user submits a code, the system can check if the cached file is stale or not. If it's stale, the system can read the file from S3 
+   and update the cache.
+- You can use multiple techniques to check if file is stale or not, like using a version number, the last updated timestamp, or a checksum.
