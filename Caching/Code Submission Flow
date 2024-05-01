@@ -1,0 +1,31 @@
+🧠 Scaler code submission
+- The code submission API currently is a high latency system where the input and output files are stored in S3.
+- Every time a user submits a code, the system has to read the input file from S3, execute the code, and write the output file back to S3.
+  This process is slow and inefficient.
+
+📝 The submit flow
+  1. User submits a code
+  2. The load balancer sends the request to one of the servers based on the hashing algorithm
+  3. The server gets the problem details from the database
+  4. The server creates the path for the input and output files or their cache key using the problem ID and version/last updated timestamp
+  5. The server checks the local cache for the input file
+  6. If the file is present, the server reads the file from the cache and executes the code
+  7. If the file is not present, it is a miss and the server reads the file from S3 and stores it in the local cache
+
+📝 The update flow
+  1. User updates the input or output file
+  2. The server updates the file in S3
+  3. The server updates the file in the DB with the new version/last updated timestamp and URLs
+  4. The current file will be invalidated and updated in the cache when the next request comes in
+
+🛌 Lazy invalidation
+- Instead of invalidating the cache immediately when the input or output file is updated, you can use lazy invalidation to update the files in the cache 
+  when they are requested. When a user submits a code, the system can check if the cached file is stale or not. If it's stale, the system can read the file
+  from S3 and update the cache.
+- You can use multiple techniques to check if file is stale or not, like using a version number, the last updated timestamp, or a checksum.
+
+🕐 TTL
+- The input and output files can be updated, so you need to manage stale data. You can use a time-to-live (TTL) to set an expiration time for the input and output files in 
+   the cache. When the TTL expires, the cache will delete the files.
+- A low TTL such as 30 seconds will increase the cache misses as the cache will be frequently evicted. A higher TTL such as 1 day will increase the cache hit 
+    rate but will have stale data.
