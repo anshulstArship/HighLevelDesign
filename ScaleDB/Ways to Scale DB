@@ -1,0 +1,96 @@
+This week’s system design refresher:
+
+7 must-know strategies to scale your database
+
+How do we retry on failures?
+
+Reddit’s Core Architecture
+
+Everything You Need to Know About Cross-Site Scripting (XSS)
+
+SPONSOR US
+
+Your ultimate guide to integrating email, calendars & contacts (Sponsored)
+
+Launch native email, calendar, and contacts capabilities with the greatest possible ROI. This latest guide from Nylas walks you through the most common options to launch these integrations for all major email and calendar service providers (Gmail, Outlook, IMAP, etc.) including APIs vs. building yourself. Read on to discover best practices and:
+
+How complex it is to build the email, calendar and contacts integration from scratch
+
+The true cost of building your own email, calendar, contacts integration
+
+6 Questions for CTOs and product managers to future-proof their business
+
+If you're interested in trying out an API that integrates these email and calendar service providers for you, check out Nylas. 
+
+Read More
+
+7 must-know strategies to scale your database
+No alternative text description for this image
+Indexing:
+Check the query patterns of your application and create the right indexes.
+
+Materialized Views:
+Pre-compute complex query results and store them for faster access.
+
+Denormalization:
+Reduce complex joins to improve query performance.
+
+Vertical Scaling
+Boost your database server by adding more CPU, RAM, or storage.
+
+Caching
+Store frequently accessed data in a faster storage layer to reduce database load.
+
+Replication
+Create replicas of your primary database on different servers for scaling the reads.
+
+Sharding
+Split your database tables into smaller pieces and spread them across servers. Used for scaling the writes as well as the reads.
+
+Over to you: What other strategies do you use for scaling your databases?
+
+How do we retry on failures?
+In distributed systems and networked applications, retry strategies are crucial for handling transient errors and network instability effectively. The diagram shows 4 common retry strategies.
+
+No alt text provided for this image
+Linear Backoff
+Linear backoff involves waiting for a progressively increasing fixed interval between retry attempts.
+
+Advantages: Simple to implement and understand.
+
+Disadvantages: May not be ideal under high load or in high-concurrency environments as it could lead to resource contention or "retry storms".
+
+Linear Jitter Backoff
+Linear jitter backoff modifies the linear backoff strategy by introducing randomness to the retry intervals. This strategy still increases the delay linearly but adds a random "jitter" to each interval.
+
+Advantages: The randomness helps spread out the retry attempts over time, reducing the chance of synchronized retries across instances.
+
+Disadvantages: Although better than simple linear backoff, this strategy might still lead to potential issues with synchronized retries as the base interval increases only linearly.
+
+Exponential Backoff
+Exponential backoff involves increasing the delay between retries exponentially. The interval might start at 1 second, then increase to 2 seconds, 4 seconds, 8 seconds, and so on, typically up to a maximum delay. This approach is more aggressive in spacing out retries than linear backoff.
+
+Advantages: Significantly reduces the load on the system and the likelihood of collision or overlap in retry attempts, making it suitable for high-load environments.
+
+Disadvantages: In situations where a quick retry might resolve the issue, this approach can unnecessarily delay the resolution.
+
+Exponential Jitter Backoff
+Exponential jitter backoff combines exponential backoff with randomness. After each retry, the backoff interval is exponentially increased, and then a random jitter is applied. The jitter can be either additive (adding a random amount to the exponential delay) or multiplicative (multiplying the exponential delay by a random factor).
+
+Advantages: Offers all the benefits of exponential backoff, with the added advantage of reducing retry collisions even further due to the introduction of jitter.
+
+Disadvantages: The randomness can sometimes result in longer than necessary delays, especially if the jitter is significant.
+
+Latest articles
+If you’re not a paid subscriber, here’s what you missed.
+
+
+A Crash Course on REST APIs
+
+API Security Best Practices
+
+A Crash Course in GraphQL
+
+HTTP1 vs HTTP2 vs HTTP3 - A Deep Dive
+
+Unlocking the Power of SQL Queries for Improved Performance
